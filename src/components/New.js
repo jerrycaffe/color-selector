@@ -1,39 +1,51 @@
 import React, {Component} from 'react';
-import {Link, Route} from 'react-router-dom';
-import {connect} from 'react-redux'
-import {addColor, colorValue} from '../actions'
-import Home from './Home'
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {addColor, inputChange, inputName} from '../actions';
+
 
 
 class New extends Component{
    
   handleSubmit = ()=>{
-   const value = this.props.reduxStateAsProp.colorValue
-   const id = Math.floor(Math.random()*1000)
-   const newVal = {id, value}
-    this.props.addColor(newVal)
-     
+   const value = this.props.reduxStateAsProp.newValue;
+   const name = this.props.reduxStateAsProp.newName;
+   
+  
+   console.log(value, name);
+    this.props.addColor(value, name)
   }
 
-   handleChange=(event)=>{
+  handleInputName=(event)=>{
   let value = event.target.value
-   this.props.colorValue(value)
+   this.props.inputName(value)
   }
+  handleInputChange=(event)=>{
+    let value = event.target.value  
+    this.props.inputChange(value)
+    }
 
 render() {
   return (
     <div className="newColor">
       <form>
-          <label htmlFor="colorName"> Color name: 
+      <label> Color Pickier: 
           <input 
-            type="text" 
-            onChange ={this.handleChange}
-            value ={this.props.value}
+            type="color"
+            onChange ={this.handleInputChange}
+            value ={this.props.newValue}
+          />
+        </label>
+          <label> Color name: 
+          <input 
+            type="text"
+            onChange ={this.handleInputName}
+            value ={this.props.newName}
           />
         </label>
        
         <Link to="/colors" onClick={this.handleSubmit}>Add Color</Link>
-        <Route path="/colors" Component= {<Home />} />
+        
         </form>
       
     </div>
@@ -44,6 +56,6 @@ const mapStateToProps = (state)=>{ return {reduxStateAsProp: state
   }
 }
 
-const mapDispatchToProps = {addColor, colorValue}
+const mapDispatchToProps = {inputName, inputChange, addColor}
 
 export default connect(mapStateToProps , mapDispatchToProps)(New);

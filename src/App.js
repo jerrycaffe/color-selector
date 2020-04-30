@@ -9,7 +9,7 @@ const App = ()=>{
     <Switch>
       <Route path="/colors/new" component={New} />
       <Route path="/colors/:id" render={(props)=><ColorGlory          {...props}/>} />
-      <Route path="/colors" component= {(props)=> <Home {...props}    />} />
+      <Route path="/" component= {(props)=> <Home {...props}    />} />
       <Redirect to="/colors" />
     </Switch>
   )
