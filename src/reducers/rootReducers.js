@@ -16,7 +16,6 @@ function rootReducers(state=initialState, action){
     case ADD_COLOR:
       const id = Math.floor(Math.random()*1000)
       const newColor = {id, name: action.name, value: action.value};
-      
       return {
         ...state,
         colors:  [newColor, ...state.colors] 

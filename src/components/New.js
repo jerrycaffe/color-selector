@@ -44,8 +44,7 @@ render() {
           />
         </label>
        
-        <Link to="/colors" onClick={this.handleSubmit}>Add Color</Link>
-        
+        <Link to="/colors" onClick={this.handleSubmit}>Add Color</Link>    
         </form>
       
     </div>
@@ -55,7 +54,6 @@ render() {
 const mapStateToProps = (state)=>{ return {reduxStateAsProp: state
   }
 }
-
 const mapDispatchToProps = {inputName, inputChange, addColor}
 
 export default connect(mapStateToProps , mapDispatchToProps)(New);
